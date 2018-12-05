@@ -10,12 +10,7 @@ def find_closest_id(file_name):
     for i_d in strings:
 
         close_matches = difflib.get_close_matches(i_d, strings, n=2)  # get string which is closest to current
-        # i_d = "".join([c for c in i_d if c in close_matches[1]])
-        for i in difflib.ndiff(i_d, close_matches[1]):  # remove different chars
-            # print(i_d)
-            if i[:-1] == "  ":
-                continue
-            i_d = i_d.replace(i[-1], "")
+        i_d = "".join([c for i,c in enumerate(i_d) if close_matches[1][i]==c])
 
         id_len = len(i_d)
         if id_len > closest_length:
